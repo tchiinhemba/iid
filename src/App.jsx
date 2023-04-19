@@ -11,9 +11,9 @@ function App() {
           <header className="header-container">
             <div className="logo">Down</div>
             <div className="social-icons">
-              <ul>
-                <li><a href=""><FaLinkedinIn/></a></li>
-                <li><a href=""><FaGithub/></a></li>
+              <ul className='list-icons'>
+                <li><a href="" className='icon'><FaLinkedinIn/></a></li>
+                <li><a href="" className='icon'><FaGithub/></a></li>
               </ul>
             </div>
           </header>
