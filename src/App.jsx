@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import cheerio from "cheerio";
 
 import "./App.scss";
 import { FaLinkedinIn, FaGithub } from "react-icons/all";
@@ -10,8 +11,21 @@ function App() {
 
   const downloadImage = async () => {
     try {
-      const response = await axios.get(link, { responseType: "blob" });
-      const url = URL.createObjectURL(response.data);
+      const response = await axios.get(link, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+        },
+        responseType: 'text'
+      });
+
+      const $ = cheerio.load(response.data);
+      const imageUrl = $('meta[property="og:image"]').attr('content');
+      const imageResponse = await axios.get(imageUrl, {
+        responseType: 'blob'
+      });
+
+      const url = URL.createObjectURL(imageResponse.data);
       window.open(url);
     } catch (error) {
       console.error(error);
