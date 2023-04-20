@@ -16,8 +16,6 @@
 }
 
 
-
-
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -76,6 +74,10 @@
     background: #000;
     border: none;
     padding: 1.2rem 3rem;
+}
+
+.btn-download:hover {
+    cursor: pointer;
 }
 
 
