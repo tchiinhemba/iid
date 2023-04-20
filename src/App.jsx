@@ -22,8 +22,8 @@ function App() {
             <div className="content-container">
 
               <div className="input-container">
-                <input type="text" />
-                <button><img src={cloudIcon} height={20}/></button>
+                <input type="text" className='input-link'placeholder='Paste your link here...'/>
+                <button className='btn-download'><img src={cloudIcon} height={20}/></button>
               </div>
             </div>
           </main>

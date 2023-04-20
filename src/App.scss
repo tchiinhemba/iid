@@ -10,7 +10,11 @@
 
 .content-wrapper {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 12rem;
 }
+
 
 
 
@@ -39,6 +43,40 @@
         color: #000;
     }
 }
+
+
+
+
+.input-container {
+    width: 50rem;
+    display: flex;
+    border: .4rem solid #000;
+}
+
+
+.input-link {
+    flex: 1;
+    padding: 0 1.2rem;
+}
+
+.input-link:focus {
+    border: none;
+    outline: none !important;
+}
+
+.input-link::placeholder {
+    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #000;
+}
+
+.btn-download {
+    background: #000;
+    border: none;
+    padding: 1.2rem 3rem;
+}
+
+
 
 
 .footer-container {
