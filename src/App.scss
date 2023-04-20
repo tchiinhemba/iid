@@ -1,0 +1,94 @@
+
+
+.container {
+    min-height: 100vh;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-top: 12rem;
+}
+
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5rem;
+}
+
+.logo {
+    font-size: 5rem;
+    text-transform: uppercase;
+}
+
+.list-icons {
+    display: flex;
+    align-items: center;
+    gap: 7rem;
+
+    .icon {
+        font-size: 4rem;
+        color: #000;
+    }
+
+    .icon:active {
+        color: #000;
+    }
+}
+
+
+
+
+.input-container {
+    width: 50rem;
+    display: flex;
+    border: .4rem solid #000;
+}
+
+
+.input-link {
+    flex: 1;
+    padding: 0 1.2rem;
+    font-size: 2rem;
+}
+
+.input-link:focus {
+    border: none;
+    outline: none !important;
+}
+
+.input-link::placeholder {
+    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #000;
+}
+
+.btn-download {
+    background: #000;
+    border: none;
+    padding: 1.2rem 3rem;
+}
+
+.btn-download:hover {
+    cursor: pointer;
+}
+
+
+
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+}
+
+.footer-description span {
+    font-size: 2.6rem;
+}
