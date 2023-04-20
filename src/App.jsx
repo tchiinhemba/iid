@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import cheerio from "cheerio";
 
 import "./App.scss";
 import { FaLinkedinIn, FaGithub } from "react-icons/all";
@@ -9,28 +8,33 @@ import cloudIcon from "./assets/icons/download-cloud.svg";
 function App() {
   const [link, setLink] = useState('');
 
+  const extractImageUrl = async () => {
+    try {
+      const response = await axios.get(link);
+      const html = response.data;
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const metaTag = doc.querySelector('meta[property="og:image"]');
+      const imageUrl = metaTag.getAttribute("content");
+      return imageUrl;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
   const downloadImage = async () => {
     try {
-      const response = await axios.get(link, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-        },
-        responseType: 'text'
-      });
-
-      const $ = cheerio.load(response.data);
-      const imageUrl = $('meta[property="og:image"]').attr('content');
-      const imageResponse = await axios.get(imageUrl, {
-        responseType: 'blob'
-      });
-
-      const url = URL.createObjectURL(imageResponse.data);
-      window.open(url);
+      const imageUrl = await extractImageUrl();
+      if (imageUrl) {
+        const response = await axios.get(imageUrl, { responseType: "blob" });
+        const url = URL.createObjectURL(response.data);
+        window.open(url);
+      }
     } catch (error) {
       console.error(error);
     }
   };
+
 
   const handleLinkChange = (event) => {
     setLink(event.target.value);
@@ -77,7 +81,7 @@ function App() {
 
           <footer className="footer-container">
             <div className="footer-description">
-              <span>Eládio Tchinhemba</span>
+              <span>Eládio Tchiinhemba</span>
             </div>
           </footer>
         </div>
