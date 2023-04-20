@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+
 import "./App.scss";
 import { FaLinkedinIn, FaGithub } from "react-icons/all";
 import cloudIcon from "./assets/icons/download-cloud.svg";
@@ -8,9 +10,8 @@ function App() {
 
   const downloadImage = async () => {
     try {
-      const response = await fetch(link);
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
+      const response = await axios.get(link, { responseType: "blob" });
+      const url = URL.createObjectURL(response.data);
       window.open(url);
     } catch (error) {
       console.error(error);
