@@ -8,37 +8,18 @@ import cloudIcon from "./assets/icons/download-cloud.svg";
 function App() {
   const [link, setLink] = useState('');
 
-  const extractImageUrl = async () => {
-    try {
-      const response = await axios.get(link);
-      const html = response.data;
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      const metaTag = doc.querySelector('meta[property="og:image"]');
-      const imageUrl = metaTag.getAttribute("content");
-      return imageUrl;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
-  const downloadImage = async () => {
-    try {
-      const imageUrl = await extractImageUrl();
-      if (imageUrl) {
-        const response = await axios.get(imageUrl, { responseType: "blob" });
-        const url = URL.createObjectURL(response.data);
-        window.open(url);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  const formSubmit = () => {
+    axios.put('http://localhost:3000', {
+      content: link
+     })
+  }
 
   const handleLinkChange = (event) => {
     setLink(event.target.value);
   };
+
+
+
 
   return (
     <div className="App">
@@ -72,7 +53,7 @@ function App() {
                   value={link}
                   onChange={handleLinkChange}
                 />
-                <button className="btn-download" onClick={downloadImage}>
+                <button className="btn-download" onClick={formSubmit}>
                   <img src={cloudIcon} height={20} />
                 </button>
               </div>
